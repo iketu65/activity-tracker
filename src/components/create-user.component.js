@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -34,6 +35,11 @@ export default class CreateUser extends Component {
     this.setState({
       username: ''
     })
+    Swal.fire(
+      'Good job!',
+      'User added!',
+      'success'
+    )
   }
 
   render() {

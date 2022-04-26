@@ -200,6 +200,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const EditExercise = () => {
     const props = useParams()
@@ -212,7 +213,7 @@ const EditExercise = () => {
         date: new Date(),
         users: []
     })
-    
+
 
     useEffect(() => {
         console.log(props.id)
@@ -244,8 +245,8 @@ const EditExercise = () => {
             .catch((error) => {
                 console.log(error);
             })
-            
-      }, [])
+
+    }, [])
 
     const onChangeUsername = (e) => {
         setState(prevState => ({
@@ -307,6 +308,11 @@ const EditExercise = () => {
             .then(res => console.log(res.data));
 
         window.location = '/';
+        Swal.fire(
+            'Good job!',
+            'Activity edited!',
+            'success'
+        )
     }
     return (
         <div>
@@ -314,7 +320,7 @@ const EditExercise = () => {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Username: </label>
-                    <select 
+                    <select
                         required
                         className="form-control"
                         value={state.username}
@@ -341,7 +347,7 @@ const EditExercise = () => {
                 </div>
                 <div className="form-group">
                     <label>Username: </label>
-                    <select 
+                    <select
                         required
                         className="form-control"
                         value={state.type}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const Exercise = props => (
   <tr>
@@ -41,6 +42,11 @@ export default class ExercisesList extends Component {
 
     this.setState({
       exercises: this.state.exercises.filter(el => el._id !== id)
+    })
+    Swal.fire({
+      icon: 'error',
+      title: 'Done',
+      text: 'Activity deleted',
     })
   }
 

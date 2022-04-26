@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from 'sweetalert2'
 
 export default class CreateExercise extends Component {
     constructor(props) {
@@ -91,12 +92,22 @@ export default class CreateExercise extends Component {
 
         console.log(exercise);
         if ((exercise.activityName.length <= 4) || (exercise.description.length <= 10 || (exercise.duration < 0))) {
-            alert("Please enter information in correct format");
+            // alert("Please enter information in correct format");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter activity data in correct format!',
+              })
         } else {
             axios.post('http://localhost:4000/exercises/add', exercise)
                 .then(res => console.log(res.data));
 
             window.location = '/';
+            Swal.fire(
+                'Good job!',
+                'Activity data added!',
+                'success'
+              )
         }
 
     }
